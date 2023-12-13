@@ -1,0 +1,15 @@
+.img:hover {
+  transform: scale(1.011);
+  transition: all 0.2s ease-in-out;
+}
+
+.img:focus {
+  outline: none;
+}
+
+.btn:hover {
+  border: 3px solid white;
+}
+.btn {
+  font-weight: 500;
+}

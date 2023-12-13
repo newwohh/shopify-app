@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "trustbadge"
+client_id = "21c7abf92abd49b1b2ca6846737698fa"
+application_url = "https://pottery-downloading-seekers-attendance.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://pottery-downloading-seekers-attendance.trycloudflare.com/auth/callback",
+  "https://pottery-downloading-seekers-attendance.trycloudflare.com/auth/shopify/callback",
+  "https://pottery-downloading-seekers-attendance.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "nevin-development.myshopify.com"
