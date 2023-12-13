@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuthenticatedFetch } from "../../hooks";
 import "./styles.css";
 
-function ShowAllBadges(props) {
+function ShowAllBadges() {
   const [selectedBadge, setSelectedBadge] = React.useState(null);
 
   const handleBadgeClick = (badge, event) => {
@@ -13,26 +13,6 @@ function ShowAllBadges(props) {
   };
 
   const fetch = useAuthenticatedFetch();
-  React.useEffect(() => {
-    const getAllBadges = async () => {
-      if (selectedBadge) {
-        try {
-          const sendRequest = await fetch("/api/badge/get")
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
-            });
-          console.log("API Response:", sendRequest);
-        } catch (error) {
-          console.error("Error posting to API:", error);
-        }
-      } else {
-        console.warn("No badge selected");
-      }
-    };
-
-    getAllBadges();
-  }, [selectedBadge]);
 
   const handlePostToAPI = async () => {
     if (selectedBadge) {
@@ -52,6 +32,10 @@ function ShowAllBadges(props) {
           referrerPolicy: "no-referrer",
         });
         console.log("API Response:", sendRequest);
+        if (sendRequest.status === 200) {
+          alert(sendRequest);
+        }
+
         alert(selectedBadge.name + " posted successfully");
       } catch (error) {
         console.error("Error posting to API:", error);
@@ -118,6 +102,7 @@ function ShowAllBadges(props) {
               style={{
                 padding: "10px",
                 border: selectedBadge === badge ? "2px solid red" : "none",
+                textAlign: "center",
               }}
               onClick={(event) => handleBadgeClick(badge, event)}
             >
@@ -139,6 +124,11 @@ function ShowAllBadges(props) {
                       : "1px solid white",
                 }}
               />
+              <h2>
+                {setSelectedBadge?.name === badge?.name
+                  ? badge?.name
+                  : badge?.name}
+              </h2>
             </div>
           ))}
         </div>

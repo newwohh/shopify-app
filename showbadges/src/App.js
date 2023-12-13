@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { createPortal } from "react-dom";
 
 function App() {
   const [selectedImages, setSelectedImages] = React.useState([]);
@@ -29,7 +30,7 @@ function App() {
   console.log(selectedImages);
 
   return (
-    <div className="trust-badge-container">
+    <div className="trust-badge-container" id="root">
       {loading && <div className="loader">Loading...</div>}
       {selectedImages &&
         loading === false &&
