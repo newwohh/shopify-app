@@ -12,7 +12,7 @@ function BadgeModel({ badge, onUpdate, onClose }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          store: badge.store,
+          store: "Nevin Development Store",
           name: name,
           url: imageUrl,
         }),
@@ -40,7 +40,7 @@ function BadgeModel({ badge, onUpdate, onClose }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          store,
+          store: "Nevin Development Store",
         }),
       });
 
@@ -100,7 +100,16 @@ function BadgeModel({ badge, onUpdate, onClose }) {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={{ width: "100%", padding: "5px", boxSizing: "border-box" }}
+            style={{
+              width: "100%",
+              padding: "5px",
+              boxSizing: "border-box",
+              borderRadius: "20px",
+              borderColor: "snow",
+              boxShadow: "none",
+              border: "2px solid #8BC6EC",
+              height: "40px",
+            }}
           />
         </label>
         <label style={{ marginBottom: "10px", display: "block" }}>
@@ -109,13 +118,22 @@ function BadgeModel({ badge, onUpdate, onClose }) {
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            style={{ width: "100%", padding: "5px", boxSizing: "border-box" }}
+            style={{
+              width: "100%",
+              padding: "5px",
+              boxSizing: "border-box",
+              borderRadius: "20px",
+              borderColor: "snow",
+              boxShadow: "none",
+              border: "2px solid #8BC6EC",
+              height: "40px",
+            }}
           />
         </label>
         <button
           onClick={handleUpdate}
           style={{
-            backgroundColor: "#4CAF50",
+            backgroundColor: "#1CAC78",
             color: "white",
             padding: "10px 15px",
             border: "none",
@@ -128,12 +146,13 @@ function BadgeModel({ badge, onUpdate, onClose }) {
         </button>
         <button
           style={{
-            backgroundColor: "red",
+            backgroundColor: "#F88379",
             color: "white",
-            padding: "10px 15px",
-            border: "none",
-            borderRadius: "4px",
+            border: "1px solid white",
+            borderRadius: "10px",
+            padding: "10px 20px",
             cursor: "pointer",
+            marginTop: "10px",
           }}
           onClick={() => deleteBadge(badge.store)}
         >

@@ -1,6 +1,6 @@
 const fetchBadge = async (loaded = () => {}) => {
   const element = document.createElement("script");
-  element.src = "http://localhost:34323/build/static/js/main.54d02813.js";
+  element.src = "http://localhost:43745/build/static/js/main.2e1590c0.js";
   element.type = "text/javascript";
   element.onload = function () {
     loaded();

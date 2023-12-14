@@ -5,7 +5,7 @@ function AuthComponent(props) {
 
   const checkStore = async () => {
     try {
-      const response = await fetch("http://localhost:33025/getuser", {
+      const response = await fetch("http://localhost:43745/getuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,10 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { useAuthenticatedFetch } from "../../hooks";
 import "./styles.css";
+import MyBadges from "./MyBadges";
 
 function ShowAllBadges() {
   const [selectedBadge, setSelectedBadge] = React.useState(null);
+  const [showMyBadges, setShowMyBadges] = React.useState(false);
 
   const handleBadgeClick = (badge, event) => {
     event.stopPropagation();
@@ -45,6 +46,18 @@ function ShowAllBadges() {
       alert("No badge selected");
     }
   };
+
+  React.useEffect(() => {
+    const storedBadge = JSON.parse(localStorage.getItem("selectedBadge"));
+    if (storedBadge) {
+      setSelectedBadge(storedBadge);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("selectedBadge", JSON.stringify(selectedBadge));
+  }, [selectedBadge]);
+  window.shop;
 
   const trustBadges = [
     {
@@ -87,69 +100,100 @@ function ShowAllBadges() {
         transition: "opacity 2s ease",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}>
-          {trustBadges.map((badge, i) => (
-            <div
-              key={i}
-              style={{
-                padding: "10px",
-                border: selectedBadge === badge ? "2px solid red" : "none",
-                textAlign: "center",
-              }}
-              onClick={(event) => handleBadgeClick(badge, event)}
-            >
-              <img
-                src={badge?.url}
-                alt={badge?.name}
-                className="img"
-                style={{
-                  width: "260px",
-                  height: "150px",
-                  objectFit: "contain",
-                  padding: "10px",
-                  cursor: "pointer",
-                  borderRadius: "10px",
-                  backgroundColor: "white",
-                  border:
-                    selectedBadge?.name === badge?.name
-                      ? "4px solid darkblue"
-                      : "1px solid white",
-                }}
-              />
-              <h2>
-                {setSelectedBadge?.name === badge?.name
-                  ? badge?.name
-                  : badge?.name}
-              </h2>
-            </div>
-          ))}
-        </div>
-        <div>
-          <button
-            className="btn"
-            style={{
-              backgroundColor: "hsla(0, 0%, 0%, 0)",
-              color: "white",
-              border: "1px solid white",
-              borderRadius: "10px",
-              padding: "10px 20px",
-              cursor: "pointer",
-              marginTop: "10px",
-            }}
-            onClick={handlePostToAPI}
+      {showMyBadges ? (
+        <MyBadges setShowMyBadges={setShowMyBadges} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}
           >
-            Post to API
-          </button>
+            {trustBadges.map((badge, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "10px",
+                  border: selectedBadge === badge ? "2px solid red" : "none",
+                  textAlign: "center",
+                }}
+                onClick={(event) => handleBadgeClick(badge, event)}
+              >
+                <img
+                  src={badge?.url}
+                  alt={badge?.name}
+                  className="img"
+                  style={{
+                    width: "260px",
+                    height: "150px",
+                    objectFit: "contain",
+                    padding: "10px",
+                    cursor: "pointer",
+                    borderRadius: "10px",
+                    backgroundColor: "white",
+                    border:
+                      selectedBadge?.name === badge?.name
+                        ? "4px solid darkblue"
+                        : "1px solid white",
+                  }}
+                />
+                <h2>
+                  {setSelectedBadge?.name === badge?.name
+                    ? badge?.name
+                    : badge?.name}
+                </h2>
+              </div>
+            ))}
+          </div>
+          <div
+            style={{
+              width: "300px",
+              display: "flex",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <div>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: "hsla(0, 0%, 0%, 0)",
+                  color: "white",
+                  border: "1px solid white",
+                  borderRadius: "10px",
+                  padding: "10px 20px",
+                  cursor: "pointer",
+                  marginTop: "10px",
+                }}
+                onClick={handlePostToAPI}
+              >
+                Post to API
+              </button>
+            </div>
+            <div>
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: "hsla(0, 0%, 0%, 0)",
+                  color: "white",
+                  border: "1px solid white",
+                  borderRadius: "10px",
+                  padding: "10px 20px",
+                  cursor: "pointer",
+                  marginTop: "10px",
+                }}
+                onClick={() => setShowMyBadges(!showMyBadges)}
+              >
+                My Badges
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

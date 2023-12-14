@@ -2,7 +2,7 @@
 
 name = "trustbadge"
 client_id = "21c7abf92abd49b1b2ca6846737698fa"
-application_url = "https://advertisers-liechtenstein-constructed-faqs.trycloudflare.com"
+application_url = "https://usr-icons-aged-senegal.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://advertisers-liechtenstein-constructed-faqs.trycloudflare.com/auth/callback",
-  "https://advertisers-liechtenstein-constructed-faqs.trycloudflare.com/auth/shopify/callback",
-  "https://advertisers-liechtenstein-constructed-faqs.trycloudflare.com/api/auth/callback"
+  "https://usr-icons-aged-senegal.trycloudflare.com/auth/callback",
+  "https://usr-icons-aged-senegal.trycloudflare.com/auth/shopify/callback",
+  "https://usr-icons-aged-senegal.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

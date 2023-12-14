@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { createPortal } from "react-dom";
 
 function App() {
   const [selectedImages, setSelectedImages] = React.useState([]);
@@ -11,7 +10,7 @@ function App() {
     const getAllBadges = async () => {
       try {
         setLoading(true);
-        const sendRequest = await fetch("http://localhost:34323/badge/get")
+        const sendRequest = await fetch("http://localhost:43745/badge/get")
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
